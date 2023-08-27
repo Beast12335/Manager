@@ -35,10 +35,10 @@ module.exports = {
           iconURL: interaction.guild.iconURL(),
         });
 
-      await interaction.reply({ embeds: [embed] });
+      await interaction.followUp({ embeds: [embed] });
     } catch (error) {
       console.error(error);
-      interaction.reply({ content: 'An error occurred while deleting messages.', ephemeral: true });
+      await interaction.followUp({ content: 'An error occurred while deleting messages.', ephemeral: true });
     }
   },
 };
