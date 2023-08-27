@@ -9,8 +9,8 @@ module.exports = {
   async execute(interaction) {
     await interaction.deferReply()
     const userPermissions = interaction.member.permissions;
-    if (!userPermissions.has(PermissionsBitField.Flags.MANAGE_NICKNAMES)) {
-      return interaction.reply({ content: 'You don\'t have permission to use this command.', ephemeral: true });
+    if (!userPermissions.has(PermissionsBitField.Flags.MANAGE_NICKNAMES) || !userPermissions.has(PermissionsBitField.Flags.Administrator)) {
+      return interaction.followUp({ content: 'You don\'t have permission to use this command.', ephemeral: true });
     }
 
     const channel = interaction.channel;
@@ -22,7 +22,7 @@ module.exports = {
 
       if (rows.length === 0) {
         connection.end();
-        return interaction.reply('This is not a valid ticket channel.');
+        return interaction.followUp('This is not a valid ticket channel.');
       }
 
       const userId = rows[0].user;
