@@ -34,7 +34,8 @@ module.exports = {
       .setTitle('Bot Creation Stopped')
       .setDescription('Bot creation was stopped due to some internal reasons.')
       .setColor('Red')
-      .setThumbnail();
+      .setThumbnail(interaction.user.displayAvatarURL({ dynamic: true }))
+      .setFooter(interaction.guild.name, interaction.guild.iconURL());
       const emb = EmbedBuilder.from(embed).addFields({name:`**Cancelled By:**`,value:`${interaction.user.username}`}).setTitle('Bot Creation Cancelled');
       await c.send({embeds:[cancel]});
       await interaction.updateReply({embeds:[emb]})
