@@ -41,7 +41,7 @@ module.exports = {
       .addFields({
         name:`**Order Channel:**`,value:interaction.channel.id,inline:true},
         {name:`**Customer:**`,value: customer.id,inline:true},);
-      await ch.send({content:`${interaction.user.id}`,embeds:[embed], components:[customerRow]})
+      await ch.send({content:`<#${interaction.user.id}>`,embeds:[embed], components:[customerRow]})
       
     } catch (error) {
       console.error(error);
