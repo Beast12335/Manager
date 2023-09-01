@@ -31,6 +31,7 @@ module.exports = {
       const collector= interaction.channel.createMessageCollector({time:120000})
       collector.on('collect', async(m) =>{
         collector.stop()
+        console.log(m)
         const emb = EmbedBuilder.from(embed).addFields({name:`**Bot Name:**`,value:m});
         await interaction.editReply({embeds:[emb]})
         await m.delete()
