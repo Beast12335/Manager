@@ -1,4 +1,4 @@
-const {Canvas} = require('canvas');
+//const {Canvas} = require('canvas');
 const {Client, GatewayIntentBits, Collection} = require('discord.js');
 const {REST} = require('@discordjs/rest');
 const {Routes} = require('discord-api-types/v9');
