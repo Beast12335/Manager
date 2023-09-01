@@ -38,7 +38,7 @@ module.exports = {
       .setFooter({text:interaction.guild.name, iconURL:interaction.guild.iconURL()});
       const emb = EmbedBuilder.from(embed).addFields({name:`**Cancelled By:**`,value:`${interaction.user.username}`}).setTitle('Bot Creation Cancelled');
       await c.send({embeds:[cancel]});
-      await interaction.editReply({embeds:[emb]})
+      await interaction.editReply({embeds:[emb], components:[]})
       console.log(embed)
     } catch (e) {
       console.log('Error handling cancel bot creation:', e);
