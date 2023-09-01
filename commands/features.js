@@ -8,11 +8,11 @@ module.exports = {
     .addStringOption(option =>
       option.setName('bot')
         .setDescription('Select a bot type')
-        .addChoice('Modmail', 'modmail')
-        .addChoice('Clan Bot', 'clan_bot')
-        .addChoice('Ticket', 'ticket')
-        .addChoice('Music', 'music')
-        .addChoice('Custom', 'custom')),
+        .addChoices({'Modmail', 'modmail'},
+                    {'Clan Bot', 'clan_bot'},
+                   {'Ticket', 'ticket'},
+                   {'Music', 'music'},
+                   {'Custom', 'custom'})),
   async execute(interaction) {
     await interaction.deferReply()
     const selectedFeature = interaction.options.getString('bot');
