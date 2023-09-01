@@ -31,8 +31,7 @@ module.exports = {
       const collector= interaction.channel.createMessageCollector({time:120000})
       collector.on('collect', async(m) =>{
         collector.stop()
-        console.log(m)
-        const emb = EmbedBuilder.from(embed).addFields({name:`**Bot Name:**`,value:m});
+        const emb = EmbedBuilder.from(embed).addFields({name:`**Bot Name:**`,value:m.content});
         await interaction.editReply({embeds:[emb]})
         await m.delete()
         await msg.delete()
@@ -46,7 +45,8 @@ module.exports = {
           .setCustomId('restart')
           const row = new ActionRowBuilder()
           .addComponents(button)
-          await interaction.editReply({embeds:[newEmbed], components:[row]})
+          await interaction.followUp({embeds:[newEmbed], components:[row]})
+          await interaction.deleteReply()
           }
         });
     } catch (e) {
