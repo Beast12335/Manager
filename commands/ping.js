@@ -8,7 +8,7 @@ module.exports = {
     async execute(interaction) {
         await interaction.deferReply()
         const embed = new EmbedBuilder()
-            .setColor(`#${Math.floor(Math.random() * 16777215).toString(16)}`)
+            .setColor('Random')
             .setThumbnail(interaction.user.displayAvatarURL({ dynamic: true }))
             .addField('Ping', `${interaction.client.ws.ping}ms`)
             .setFooter(interaction.guild.name, interaction.guild.iconURL());
