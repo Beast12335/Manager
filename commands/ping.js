@@ -11,7 +11,7 @@ module.exports = {
             .setColor('Random')
             .setThumbnail(interaction.user.displayAvatarURL({ dynamic: true }))
             .addFields({name:'Ping', value:`${interaction.client.ws.ping}ms`})
-            .setFooter({interaction.guild.name, interaction.guild.iconURL()});
+            .setFooter({text:interaction.guild.name, iconURL:interaction.guild.iconURL()});
 
         await interaction.followUp({ embeds: [embed] });
     },
