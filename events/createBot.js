@@ -34,7 +34,7 @@ module.exports = {
         label:`All in One`},{
         value:`Music Bot`,
         description:` `,
-        label:`Mysic Bot`},{
+        label:`Music Bot`},{
         value:`Modmail Bot`,
         description:` `,
         label:`Modmail Bot`},{
