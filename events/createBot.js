@@ -29,28 +29,28 @@ module.exports = {
       .setCustomId('bot_type')
       .setPlaceholder('Choose the Bot Type')
       .addOptions({
-        name:`All in One`,
+        value:`All in One`,
         description:` `,
         label:`All in One`},{
-        name:`Music Bot`,
+        value:`Music Bot`,
         description:` `,
         label:`Mysic Bot`},{
-        name:`Modmail Bot`,
+        value:`Modmail Bot`,
         description:` `,
         label:`Modmail Bot`},{
-        name:`Ticket Bot`,
+        value:`Ticket Bot`,
         description:` `,
         label:`Ticket Bot`},{
-        name:`Channel Bot`,
+        value:`Channel Bot`,
         description:` `,
         label:`Channel Bot`},{
-        name:`Security Bot`,
+        value:`Security Bot`,
         description:` `,
         label:`Security Bot`},{
-        name:`WaitingRoom Bot`,
+        value:`WaitingRoom Bot`,
         description:` `,
         label:`WaitingRoom Bot`},{
-        name:`Custom Bot`,
+        value:`Custom Bot`,
         description:` `,
         label:`Custom Bot`});
       const button = new ButtonBuilder()
