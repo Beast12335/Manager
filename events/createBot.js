@@ -60,7 +60,7 @@ module.exports = {
       
       const row = new ActionRowBuilder()
       .addComponents(menu,button)
-      await interaction.updateReply({embeds:[embed], components:[row]})
+      await interaction.editReply({embeds:[embed], components:[row]})
     } catch (e) {
       console.log('Error handling start bot creation:', e);
       await interaction.followUp({content:`Error: ${e}`});
