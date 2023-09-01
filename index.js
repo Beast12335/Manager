@@ -43,7 +43,6 @@ const registerCommands = async () => {
 client.once('ready', async () => {
   console.log(`Logged in as ${client.user.tag}.`);
   registerCommands();
-  runCheckVouchersScript();
   });
 // Increase the maximum listener limit for EventEmitter
 require('events').EventEmitter.defaultMaxListeners = 25; // Adjust the value as needed
