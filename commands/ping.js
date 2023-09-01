@@ -10,7 +10,7 @@ module.exports = {
         const embed = new EmbedBuilder()
             .setColor('Random')
             .setThumbnail(interaction.user.displayAvatarURL({ dynamic: true }))
-            .addField('Ping', `${interaction.client.ws.ping}ms`)
+            .addFields({name:'Ping', value:`${interaction.client.ws.ping}ms`})
             .setFooter(interaction.guild.name, interaction.guild.iconURL());
 
         await interaction.followUp({ embeds: [embed] });
