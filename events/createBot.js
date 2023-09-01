@@ -59,8 +59,10 @@ module.exports = {
       .setLabel('Cancel');
       
       const row = new ActionRowBuilder()
-      .addComponents(menu,button)
-      await interaction.editReply({embeds:[embed], components:[row]})
+      .addComponents(menu)
+      const row2 = new ActionRowBuilder()
+      .addComponents(button)
+      await interaction.editReply({embeds:[embed], components:[row,row2]})
     } catch (e) {
       console.log('Error handling start bot creation:', e);
       await interaction.followUp({content:`Error: ${e}`});
