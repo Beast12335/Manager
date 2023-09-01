@@ -1,0 +1,21 @@
+{
+  "name": "demo_bot",
+  "version": "1.0.0",
+  "description": "A Basic OP BOT",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "Beast",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "discord.js": "^14.13.0",
+    "lib":"^4.3.3",
+    "fs": "0.0.1-security",
+    "node.js": "0.0.1-security",
+    "officegen": "^0.6.4",
+    "path":"^0.12.7", 
+    "mysql2":"^3.3.1"
+  }
+}
