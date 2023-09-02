@@ -11,7 +11,7 @@ module.exports = {
   name:'interactionCreate',
   async execute(interaction) {
     if (!interaction.isStringSelectMenu()) return;
-    if (interaction.customId !== 'paymemt') return;
+    if (interaction.customId !== 'payment') return;
     await interaction.deferUpdate();
     try {
       if (
