@@ -30,9 +30,9 @@ module.exports = {
       .setPlaceholder('Choose the payment type')
       .setCustomId('payment')
       .addOptions({
-        label:`Invites`,value:`invites`},{
-        label:`Money`,value:`money`},{
-        label:`Event`,value:`event`});
+        label:`Invites`,value:`Invites`},{
+        label:`Money`,value:`Money`},{
+        label:`Event`,value:`Event`});
       const row = new ActionRowBuilder()
       .addComponents(menu)
       await interaction.editReply({embeds:[newEmbed], components:[row]});
