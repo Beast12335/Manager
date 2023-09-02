@@ -55,7 +55,7 @@ module.exports = {
         }
         
         if (expired) {
-          const emb = EmbedBuilder.from(newEmbed).addFields({name:`**Payment Duration:**`,value:expired})
+          const emb = EmbedBuilder.from(newEmbed).addFields({name:`**Payment Duration:**`,value:expired,inline:true})
           await interaction.editReply({embeds:[emb], components:[]})
           await msg.delete()
           await m.delete()
