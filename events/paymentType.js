@@ -55,11 +55,12 @@ module.exports = {
         }
         
         if (expired) {
+          console.log(expired)
           const emb = EmbedBuilder.from(newEmbed).addFields({name:`**Payment Duration:**`,value:expired,inline:true})
           await interaction.editReply({embeds:[emb], components:[]})
           await msg.delete()
           await m.delete()
-          name()
+          //name()
         } else {
           await interaction.channel.send('Invalid format. Please use (number)(duration), e.g., "2d" for 2 days.');
         }
