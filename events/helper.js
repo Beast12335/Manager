@@ -1,5 +1,6 @@
 async function name(interaction,EmbedBuilder,ButtonBuilder,ActionRowBuilder){
   const u = await interaction.channel.send('Please send the **Bot Name**. You have 2 minutes to do so')
+  console.log('name')
   const collector = await interaction.channel.createMessageCollector({time:120000})
   collector.on('collect', async(m) =>{
     collector.stop()
@@ -27,12 +28,13 @@ async function name(interaction,EmbedBuilder,ButtonBuilder,ActionRowBuilder){
 }
 
 async function id(interaction,EmbedBuilder,ButtonBuilder,ActionRowBuilder){
-  const u = await interaction.channel.send('Please send the **Bot Id**. You have 2 minutes to do so')
+  const p = await interaction.channel.send('Please send the **Bot Id**. You have 2 minutes to do so')
+  console.log('id')
   const collector = await interaction.channel.createMessageCollector({time:120000})
-  collector.on('collect', async(m) =>{
+  collector.on('collect', async(t) =>{
     collector.stop()
     const newEmbed = interaction.message.embeds[0]
-    const emb = EmbedBuilder.from(newEmbed).addFields({name:`**Id:**`,value:m.content});
+    const emb = EmbedBuilder.from(newEmbed).addFields({name:`**Id:**`,value:t.content});
     const button = new ButtonBuilder()
     .setStyle('Link')
     .setLabel('Invite Bot')
@@ -44,8 +46,8 @@ async function id(interaction,EmbedBuilder,ButtonBuilder,ActionRowBuilder){
     const row = new ActionRowBuilder()
     .addComponents(button,confirm)
     await interaction.editReply({embeds:[emb], components:[row]})
-    await m.delete()
-    await u.delete()
+    await p.delete()
+    await t.delete()
     });
   collector.on('end', async(collected) =>{
     if(collected.size == '0'){
@@ -58,8 +60,8 @@ async function id(interaction,EmbedBuilder,ButtonBuilder,ActionRowBuilder){
       .addComponents(button)
       await interaction.channel.send({embeds:[newEmbed], components:[row]})
       await interaction.deleteReply()
-      await u.delete()
-      await m.delete()
+      await p.delete()
+      await t.delete()
       }
     });
 }
