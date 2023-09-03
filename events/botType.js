@@ -33,9 +33,15 @@ module.exports = {
         label:`Invites`,value:`Invites`},{
         label:`Money`,value:`Money`},{
         label:`Event`,value:`Event`});
+      const button = new ButtonBuilder()
+      .setCustomId('cancel')
+      .setLabel('Cancel')
+      .setStyle('Danger');
       const row = new ActionRowBuilder()
       .addComponents(menu)
-      await interaction.editReply({embeds:[newEmbed], components:[row]});
+      const row2 = new ActionRowBuilder()
+      .addComponents(button)
+      await interaction.editReply({embeds:[newEmbed], components:[row,row2]});
     } catch (e) {
       console.log('Error handling  bot creation type menu:', e);
       await interaction.followUp({content:`Error: ${e}`});
