@@ -22,3 +22,4 @@ async function name(){
       }
     });
 }
+module.exports = { name };
