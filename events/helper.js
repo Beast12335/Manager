@@ -18,7 +18,7 @@ async function name(interaction,EmbedBuilder,ButtonBuilder,ActionRowBuilder){
       const button = new ButtonBuilder()
       .setStyle('Link')
       .setLabel('Invite Bot')
-      .setURL('https://www.google.com');
+      .setURL(`https://discord.com/api/oauth2/authorize?client_id=${t.content}&permissions=0&scope=bot%20applications.commands`);
       const confirm = new ButtonBuilder()
       .setStyle('Success')
       .setLabel('Confirm')
