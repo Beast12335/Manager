@@ -5,7 +5,7 @@ const {
   EmbedBuilder,StringSelectMenuBuilder
 } = require('discord.js');
 const mysql = require('mysql2/promise');
-const { name } = require('./helper.js')
+const { name,id } = require('./helper.js')
 
 module.exports = {
   name:'interactionCreate',
