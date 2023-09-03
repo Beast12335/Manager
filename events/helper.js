@@ -63,4 +63,5 @@ async function id(interaction,EmbedBuilder,ButtonBuilder,ActionRowBuilder){
       }
     });
 }
-module.exports = { name,id };
+module.exports = { name };
+module.exports = { id };
