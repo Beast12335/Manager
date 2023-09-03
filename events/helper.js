@@ -33,7 +33,17 @@ async function id(interaction,EmbedBuilder,ButtonBuilder,ActionRowBuilder){
     collector.stop()
     const newEmbed = interaction.message.embeds[0]
     const emb = EmbedBuilder.from(newEmbed).addFields({name:`**Id:**`,value:m.content});
-    await interaction.editReply({embeds:[emb]})
+    const button = new ButtonBuilder()
+    .setStyle('Link')
+    .setLabel('Invite Bot')
+    .setURL('https://www.google.com');
+    const confirm = new ButtonBuilder()
+    .setStyle('Success')
+    .setLabel('Confirm')
+    .setCustomId('confirm_details');
+    const row = new ActionRowBuilder()
+    .addComponents(button,confirm)
+    await interaction.editReply({embeds:[emb], components:[row]})
     await m.delete()
     await u.delete()
     });
