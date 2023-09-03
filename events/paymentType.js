@@ -5,7 +5,7 @@ const {
   EmbedBuilder,StringSelectMenuBuilder
 } = require('discord.js');
 const mysql = require('mysql2/promise');
-const { name,id } = require('./helper.js')
+const { name } = require('./helper.js')
 
 module.exports = {
   name:'interactionCreate',
@@ -55,13 +55,11 @@ module.exports = {
         }
         
         if (expired) {
-          console.log(expired)
           const emb = EmbedBuilder.from(newEmbed).addFields({name:`**Payment Duration:**`,value:expired.toString(),inline:true})
           await interaction.editReply({embeds:[emb], components:[]})
           await msg.delete()
           await m.delete()
           name(interaction,EmbedBuilder,ButtonBuilder,ActionRowBuilder)
-          id(interaction,EmbedBuilder,ButtonBuilder,ActionRowBuilder)
         } else {
           await interaction.channel.send('Invalid format. Please use (number)(duration), e.g., "2d" for 2 days.');
           await m.delete()
