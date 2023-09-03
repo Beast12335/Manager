@@ -1,4 +1,4 @@
-async function name(){
+async function name(interaction){
   const u = await interaction.channel.send('Please send the **Bot Name**. You have 2 minutes to do so')
   const collector = await interaction.channel.createMessageCollector({time:120000})
   collector.on('collect', async(m) =>{
@@ -19,6 +19,8 @@ async function name(){
       .addComponents(button)
       await interaction.channel.send({embeds:[newEmbed], components:[row]})
       await interaction.deleteReply()
+      await u.delete()
+      await m.delete()
       }
     });
 }
