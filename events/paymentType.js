@@ -5,7 +5,7 @@ const {
   EmbedBuilder,StringSelectMenuBuilder
 } = require('discord.js');
 const mysql = require('mysql2/promise');
-const {name} = require('./helper.js')
+const name = require('./helper.js')
 
 module.exports = {
   name:'interactionCreate',
@@ -63,6 +63,8 @@ module.exports = {
           name()
         } else {
           await interaction.channel.send('Invalid format. Please use (number)(duration), e.g., "2d" for 2 days.');
+          await m.delete()
+          await msg.delete()
         }
         });
       collector.on('end', async(collected) =>{
