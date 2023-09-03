@@ -60,7 +60,7 @@ module.exports = {
           await interaction.editReply({embeds:[emb], components:[]})
           await msg.delete()
           await m.delete()
-          name()
+          name(interaction)
         } else {
           await interaction.channel.send('Invalid format. Please use (number)(duration), e.g., "2d" for 2 days.');
           await m.delete()
