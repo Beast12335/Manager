@@ -32,7 +32,8 @@ module.exports = {
       }
       const randomCode = generateRandomCode(6);
       const qrCode = await qrcode.toDataURL(randomCode);
-      const file = new AttachmentBuilder(qrCode,'qrcode.png')
+      const imageBuffer = Buffer.from(qrCode.split(',')[1], 'base64');
+      const file = new AttachmentBuilder(imageBuffer,'qrcode.png')
       const orderEmbed = new EmbedBuilder()
       .setTitle('Bot Created')
       .setColor('Green')
