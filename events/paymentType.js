@@ -72,7 +72,7 @@ module.exports = {
           const button = new ButtonBuilder()
           .setStyle('Secondary')
           .setLabel('Restart')
-          .setCustomId('restart')
+          .setCustomId('restart_1')
           const row = new ActionRowBuilder()
           .addComponents(button)
           await interaction.channel.send({embeds:[newEmbed], components:[row]})
