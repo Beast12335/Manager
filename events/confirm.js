@@ -36,10 +36,10 @@ module.exports = {
       .setTitle('Bot Created')
       .setColor('Green')
       .setDescription(`${embed.fields[6].value} is **Online** and ready to be used. \n 
-<@${embed.fields[7].value}> is a ${embed.fields[3].value} and got added to <@${embed.fields[1].value} wallet.
+<@${embed.fields[7].value}> is a ${embed.fields[3].value} and got added to <@${embed.fields[1].value}> wallet.
 To get started type \`/help\`
       > [Click here](https://www.google.com) to invite the bot.
-      > More details about the bot have been sent to you via **DM**s
+    > More details about the bot have been sent to you via **DM**s
 `)
       .setThumbnail(interaction.guild.iconURL())
       
@@ -56,7 +56,7 @@ To get started type \`/help\`
       await orderChannel.send({content:`<@${embed.fields[1].value}> Created By: ${creator} | ${embed.fields[2].value}`,embeds:[orderEmbed]})
       const newEmbed = EmbedBuilder.from(embed).addFields({name:`**Security Code:**`,value:randomCode,inline:true});
       await interaction.editReply({embeds:[newEmbed]});
-      const msg = await customer.send({content:message,embeds:[dmEmbed],files:({attachment:qrCode,name:'qrcode.png'})})
+      const msg = await customer.send({content:message,embeds:[dmEmbed],files:[{attachment:qrCode,name:'qrcode.png'}]})
       await msg.pin()
       await customer.send({content:`<@${embed.fields[1].value}> Created By: ${creator} | ${embed.fields[2].value}`,embeds:[orderEmbed]})
 } catch (error) {
