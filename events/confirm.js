@@ -43,34 +43,9 @@ module.exports = {
       .setDescription(`${embed.fields[6].value} is **Online** and ready to be used. \n 
 <@${embed.fields[7].value}> is a ${embed.fields[3].value} and got added to <@${embed.fields[1].value}> wallet.
 To get started type \`/help\`
-      > [Click here](https://www.google.com) to invite the bot.
+      > [Click here](https://discord.com/api/oauth2/authorize?client_id=${embed.fields[7].value}&permissions=8&scope=bot%20applications.commands) to invite the bot.
     > More details about the bot have been sent to you via **DM**s
 `)
-      .setThumbnail(interaction.guild.iconURL())
-      
-      const message = '***IF YOU ARE HAVING PROBLEMS, or need a restart, or something else! THEN SEND US THIS INFORMATION!!!*** > This includes: `BotChanges`, `Restarts`, `Deletions`, `Adjustments & Upgrades` > *This message is also a proof, that you are the original Owner of this BOT*'
-      const dmEmbed = new EmbedBuilder()
-      .setTitle(' ')
-      .setThumbnail(interaction.guild.iconURL())
-      .setColor('Blue')
-      .setDescription(`
-**Path:**
- > /home/bots/${embed.fields[3].value}/${embed.fields[6].value}
- 
-**Command:**
- > pm2 list | grep /"${embed.fields[6].value}/"
-                        
-**Application Information:**
- > Link: https://discord.com/developers/applications/${embed.fields[7].value}
- > Name : ${embed.fields[6].value}
- > Original Owner: ${customer.username}`)
-     // .setImage(qrCode)
-      await orderChannel.send({content:`<@${embed.fields[1].value}> Created By: ${creator} | ${embed.fields[2].value}`,embeds:[orderEmbed]})
-      const newEmbed = EmbedBuilder.from(embed).addFields({name:`**Security Code:**`,value:randomCode,inline:true});
-      await interaction.editReply({embeds:[newEmbed]});
-      const msg = await customer.send({content:message,embeds:[dmEmbed],files:[file]})
-      await msg.pin()
-      await customer.send({content:`<@${embed.fields[1].value}> Created By: ${creator} | ${embed.fields[2].value}`,embeds:[orderEmbed]})
 } catch (error) {
       console.error('Error handling confirm bot creation button interaction:', error);
       if (error.code == 50007){
