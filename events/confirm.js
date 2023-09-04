@@ -52,7 +52,7 @@ To get started type \`/help\`
       .setThumbnail(interaction.guild.iconURL())
       .setColor('Blue')
       .setDescription('  ')
-      .setImage('attachment://qrcode.png')
+     // .setImage('attachment://qrcode.png')
       await orderChannel.send({content:`<@${embed.fields[1].value}> Created By: ${creator} | ${embed.fields[2].value}`,embeds:[orderEmbed]})
       const newEmbed = EmbedBuilder.from(embed).addFields({name:`**Security Code:**`,value:randomCode,inline:true});
       await interaction.editReply({embeds:[newEmbed]});
