@@ -14,13 +14,16 @@ module.exports = {
     if (interaction.customId !== 'confirm_details') return;
     
     await interaction.deferUpdate()
+    const embed = interaction.message.embeds[0]
+    const orderChannel = interaction.client.channels.cache.get(embed.fields[0].value)
+    const creator = interaction.client.users.cache.get(embed.fields[2].value).username
+    const customer = await interaction.client.users.fetch(embed.fields[1].value)
+    
     try {
       if (!interaction.member.permissions.has('ADMINISTRATOR')) {
         return await interaction.followUp({ content: 'You do not have permission to claim this ticket.', ephemeral: true });
       }
      // const connection = await mysql.createConnection(process.env.DB_URL);
-      const embed = interaction.message.embeds[0]
-      
       function generateRandomCode(length) {
         const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
         let code = '';
@@ -45,9 +48,6 @@ To get started type \`/help\`
 `)
       .setThumbnail(interaction.guild.iconURL())
       
-      const orderChannel = interaction.client.channels.cache.get(embed.fields[0].value)
-      const creator = interaction.client.users.cache.get(embed.fields[2].value).username
-      const customer = await interaction.client.users.fetch(embed.fields[1].value)
       const message = '***IF YOU ARE HAVING PROBLEMS, or need a restart, or something else! THEN SEND US THIS INFORMATION!!!*** > This includes: `BotChanges`, `Restarts`, `Deletions`, `Adjustments & Upgrades` > *This message is also a proof, that you are the original Owner of this BOT*'
       const dmEmbed = new EmbedBuilder()
       .setTitle(' ')
@@ -58,7 +58,7 @@ To get started type \`/help\`
  > /home/bots/${embed.fields[3].value}/${embed.fields[6].value}
  
 **Command:**
- > pm2 list | grep /"${embed.fields[6].value]}/"
+ > pm2 list | grep /"${embed.fields[6].value}/"
                         
 **Application Information:**
  > Link: https://discord.com/developers/applications/${embed.fields[7].value}
@@ -74,6 +74,7 @@ To get started type \`/help\`
 } catch (error) {
       console.error('Error handling confirm bot creation button interaction:', error);
       if (error.code == 50007){
+        const newEmb = interaction.message.embeds[0]
         await orderChannel.send({content:`<@${embed.field[1].value}> Your dms are closed. Kindly open the DMs and then ask someone from staff to send you the details`})
         const button = new ButtonBuilder()
         .setStyle('Primary')
@@ -81,7 +82,7 @@ To get started type \`/help\`
         .setCustomId('dm')
         const row = new ActionRowBuilder()
         .addComponents(button)
-        await interaction.editReply({embeds:[newEmbed], components:[row]})
+        await interaction.editReply({embeds:[newEmb], components:[row]})
         }
     }
   },
