@@ -11,7 +11,7 @@ module.exports = {
   name: 'interactionCreate',
   async execute(interaction) {
     if (!interaction.isButton()) return;
-    if (interaction.customId !== 'confirm') return;
+    if (interaction.customId !== 'confirm_details') return;
     
     await interaction.deferUpdate()
     try {
