@@ -48,10 +48,10 @@ To get started type \`/help\`
       const customer = await interaction.client.users.fetch(embed.fields[1].value)
       const message = '***IF YOU ARE HAVING PROBLEMS, or need a restart, or something else! THEN SEND US THIS INFORMATION!!!***> This includes: `BotChanges`, `Restarts`, `Deletions`, `Adjustments & Upgrades`> *This message is also a proof, that you are the original Owner of this BOT*'
       const dmEmbed = new EmbedBuilder()
-      .setTitle('')
+      .setTitle('  ')
       .setThumbnail(interaction.guild.iconURL())
       .setColor('Blue')
-      .setDescription('')
+      .setDescription('  ')
       .setImage('attachment://qrcode.png')
       await orderChannel.send({content:`<@${embed.fields[1].value}> Created By: ${creator} | ${embed.fields[2].value}`,embeds:[orderEmbed]})
       const newEmbed = EmbedBuilder.from(embed).addFields({name:`**Security Code:**`,value:randomCode,inline:true});
