@@ -31,7 +31,7 @@ module.exports = {
         return code;
       }
       const randomCode = generateRandomCode(6);
-      const qrCode = await qr.toDataURL(randomCode);
+      const qrCode = await qrcode.toDataURL(randomCode);
       const orderEmbed = new EmbedBuilder()
       .setTitle('Bot Created')
       .setColor('Green')
