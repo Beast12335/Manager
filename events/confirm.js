@@ -1,6 +1,6 @@
 const {
   PermissionsBitField,
-  ActionRowBuilder,
+  ActionRowBuilder, AttachmentBuilder
   ButtonBuilder,
   EmbedBuilder,StringSelectMenuBuilder
 } = require('discord.js');
@@ -31,8 +31,8 @@ module.exports = {
         return code;
       }
       const randomCode = generateRandomCode(6);
-      const qrCode = await qrcode.toDataURL(randomCode,function(err,url){
-        console.log(url)});
+      const qrCode = await qrcode.toDataURL(randomCode);
+      const file = new AttachmentBuilder(qrCode,'qrcode.png')
       const orderEmbed = new EmbedBuilder()
       .setTitle('Bot Created')
       .setColor('Green')
@@ -57,7 +57,7 @@ To get started type \`/help\`
       await orderChannel.send({content:`<@${embed.fields[1].value}> Created By: ${creator} | ${embed.fields[2].value}`,embeds:[orderEmbed]})
       const newEmbed = EmbedBuilder.from(embed).addFields({name:`**Security Code:**`,value:randomCode,inline:true});
       await interaction.editReply({embeds:[newEmbed]});
-      const msg = await customer.send({content:message,embeds:[dmEmbed]/*,files:[{attachment:qrCode,name:'qrcode.png'}]*/})
+      const msg = await customer.send({content:message,embeds:[dmEmbed],files:[file]})
       await msg.pin()
       await customer.send({content:`<@${embed.fields[1].value}> Created By: ${creator} | ${embed.fields[2].value}`,embeds:[orderEmbed]})
 } catch (error) {
