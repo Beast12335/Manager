@@ -52,11 +52,11 @@ To get started type \`/help\`
       .setThumbnail(interaction.guild.iconURL())
       .setColor('Blue')
       .setDescription('  ')
-     // .setImage('attachment://qrcode.png')
+      .setImage(qrCode)
       await orderChannel.send({content:`<@${embed.fields[1].value}> Created By: ${creator} | ${embed.fields[2].value}`,embeds:[orderEmbed]})
       const newEmbed = EmbedBuilder.from(embed).addFields({name:`**Security Code:**`,value:randomCode,inline:true});
       await interaction.editReply({embeds:[newEmbed]});
-      const msg = await customer.send({content:message,embeds:[dmEmbed],files:[{attachment:qrCode,name:'qrcode.png'}]})
+      const msg = await customer.send({content:message,embeds:[dmEmbed]/*,files:[{attachment:qrCode,name:'qrcode.png'}]*/})
       await msg.pin()
       await customer.send({content:`<@${embed.fields[1].value}> Created By: ${creator} | ${embed.fields[2].value}`,embeds:[orderEmbed]})
 } catch (error) {
