@@ -48,12 +48,22 @@ To get started type \`/help\`
       const orderChannel = interaction.client.channels.cache.get(embed.fields[0].value)
       const creator = interaction.client.users.cache.get(embed.fields[2].value).username
       const customer = await interaction.client.users.fetch(embed.fields[1].value)
-      const message = '***IF YOU ARE HAVING PROBLEMS, or need a restart, or something else! THEN SEND US THIS INFORMATION!!!***> This includes: `BotChanges`, `Restarts`, `Deletions`, `Adjustments & Upgrades`> *This message is also a proof, that you are the original Owner of this BOT*'
+      const message = '***IF YOU ARE HAVING PROBLEMS, or need a restart, or something else! THEN SEND US THIS INFORMATION!!!*** > This includes: `BotChanges`, `Restarts`, `Deletions`, `Adjustments & Upgrades` > *This message is also a proof, that you are the original Owner of this BOT*'
       const dmEmbed = new EmbedBuilder()
-      .setTitle('  ')
+      .setTitle(' ')
       .setThumbnail(interaction.guild.iconURL())
       .setColor('Blue')
-      .setDescription('  ')
+      .setDescription(`
+**Path:**
+ > /home/bots/${embed.fields[3].value}/${embed.fields[6].value}
+ 
+**Command:**
+ > pm2 list | grep /"${embed.fields[6].value]}/"
+                        
+**Application Information:**
+ > Link: https://discord.com/developers/applications/${embed.fields[7].value}
+ > Name : ${embed.fields[6].value}
+ > Original Owner: ${customer.username}`)
      // .setImage(qrCode)
       await orderChannel.send({content:`<@${embed.fields[1].value}> Created By: ${creator} | ${embed.fields[2].value}`,embeds:[orderEmbed]})
       const newEmbed = EmbedBuilder.from(embed).addFields({name:`**Security Code:**`,value:randomCode,inline:true});
