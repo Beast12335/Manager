@@ -11,7 +11,7 @@ module.exports = {
   async execute(interaction) {
     if (!interaction.isButton()) return;
     if (interaction.customId !== 'restart_1') return;
-    await interaction.deferReply({ephemeral:true});
+    await interaction.deferReply();
     try {
       if (
         !interaction.member.permissions.has(
