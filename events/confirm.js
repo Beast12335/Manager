@@ -23,7 +23,7 @@ module.exports = {
       if (!interaction.member.permissions.has('ADMINISTRATOR')) {
         return await interaction.followUp({ content: 'You do not have permission to claim this ticket.', ephemeral: true });
       }
-     // const connection = await mysql.createConnection(process.env.DB_URL);
+      const connection = await mysql.createConnection(process.env.DB_URL);
       function generateRandomCode(length) {
         const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
         let code = '';
@@ -46,6 +46,7 @@ To get started type \`/help\`
       > [Click here](https://discord.com/api/oauth2/authorize?client_id=${embed.fields[7].value}&permissions=8&scope=bot%20applications.commands) to invite the bot.
     > More details about the bot have been sent to you via **DM**s
 `)
+     await connection.execute('insert into bots_db values(?,?,?,?,?,?,?)',[embed.fields[1].value,embed.fields[2].value,embed.fields[3].value,embed.fields[4].value,embed.fields[5].value,embed.fields[6].value,embed.fields[7].value])
 } catch (error) {
       console.error('Error handling confirm bot creation button interaction:', error);
       if (error.code == 50007){
