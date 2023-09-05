@@ -24,6 +24,7 @@ module.exports = {
         return await interaction.followUp({ content: 'You do not have permission to claim this ticket.', ephemeral: true });
       }
       const connection = await mysql.createConnection(process.env.DB_URL);
+      console.log('1')
       function generateRandomCode(length) {
         const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
         let code = '';
