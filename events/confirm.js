@@ -12,8 +12,9 @@ module.exports = {
   async execute(interaction) {
     if (!interaction.isButton()) return;
     if (interaction.customId !== 'confirm_details') return;
-    console.log('beast')
+    
     await interaction.deferUpdate()
+    const connection = await mysql.createConnection(process.env.DB_URL);
     const embed = interaction.message.embeds[0]
     const orderChannel = interaction.client.channels.cache.get(embed.fields[0].value)
     const creator = interaction.client.users.cache.get(embed.fields[2].value).username
@@ -23,8 +24,7 @@ module.exports = {
       if (!interaction.member.permissions.has('ADMINISTRATOR')) {
         return await interaction.followUp({ content: 'You do not have permission to claim this ticket.', ephemeral: true });
       }
-      const connection = await mysql.createConnection(process.env.DB_URL);
-      console.log('1')
+     // const connection = await mysql.createConnection(process.env.DB_URL);
       function generateRandomCode(length) {
         const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
         let code = '';
@@ -47,7 +47,32 @@ To get started type \`/help\`
       > [Click here](https://discord.com/api/oauth2/authorize?client_id=${embed.fields[7].value}&permissions=8&scope=bot%20applications.commands) to invite the bot.
     > More details about the bot have been sent to you via **DM**s
 `)
-     const [ row ] = await connection.execute('insert into bots_db values(?,?,?,?,?,?,?)',[embed.fields[1].value,embed.fields[2].value,embed.fields[3].value,embed.fields[4].value,embed.fields[5].value,embed.fields[6].value,embed.fields[7].value])
+      .setThumbnail(interaction.guild.iconURL())
+      
+      const message = '***IF YOU ARE HAVING PROBLEMS, or need a restart, or something else! THEN SEND US THIS INFORMATION!!!*** > This includes: `BotChanges`, `Restarts`, `Deletions`, `Adjustments & Upgrades` > *This message is also a proof, that you are the original Owner of this BOT*'
+      const dmEmbed = new EmbedBuilder()
+      .setTitle(' ')
+      .setThumbnail(interaction.guild.iconURL())
+      .setColor('Blue')
+      .setDescription(`
+**Path:**
+ > /home/bots/${embed.fields[3].value}/${embed.fields[6].value}
+ 
+**Command:**
+ > pm2 list | grep /"${embed.fields[6].value}/"
+                        
+**Application Information:**
+ > Link: https://discord.com/developers/applications/${embed.fields[7].value}
+ > Name : ${embed.fields[6].value}
+ > Original Owner: ${customer.username}`)
+     // .setImage(qrCode)
+      await orderChannel.send({content:`<@${embed.fields[1].value}> Created By: ${creator} | ${embed.fields[2].value}`,embeds:[orderEmbed]})
+      const newEmbed = EmbedBuilder.from(embed).addFields({name:`**Security Code:**`,value:randomCode,inline:true});
+      await interaction.editReply({embeds:[newEmbed]});
+      const msg = await customer.send({content:message,embeds:[dmEmbed],files:[file]})
+      await msg.pin()
+      await customer.send({content:`<@${embed.fields[1].value}> Created By: ${creator} | ${embed.fields[2].value}`,embeds:[orderEmbed]})
+      await connection.execute('insert into bots_db values(?,?,?,?,?,?,?)',[embed.fields[1].value,embed.fields[2].value,embed.fields[3].value,embed.fields[4].value,embed.fields[5].value,embed.fields[6].value,embed.fields[7].value])
 } catch (error) {
       console.error('Error handling confirm bot creation button interaction:', error);
       if (error.code == 50007){
