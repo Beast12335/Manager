@@ -15,15 +15,16 @@ module.exports = {
     
     await interaction.deferUpdate()
     const connection = await mysql.createConnection(process.env.DB_URL);
-    const embed = interaction.message.embeds[0]
-    const orderChannel = interaction.client.channels.cache.get(embed.fields[0].value)
-    const creator = interaction.client.users.cache.get(embed.fields[2].value).username
-    const customer = await interaction.client.users.fetch(embed.fields[1].value)
     
     try {
       if (!interaction.member.permissions.has('ADMINISTRATOR')) {
         return await interaction.followUp({ content: 'You do not have permission to claim this ticket.', ephemeral: true });
       }
+      const embed = interaction.message.embeds[0]
+      const orderChannel = interaction.client.channels.cache.get(embed.fields[0].value)
+      const creator = interaction.client.users.cache.get(embed.fields[2].value).username
+      const customer = await interaction.client.users.fetch(embed.fields[1].value)
+    
      // const connection = await mysql.createConnection(process.env.DB_URL);
       function generateRandomCode(length) {
         const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -77,6 +78,7 @@ To get started type \`/help\`
       console.error('Error handling confirm bot creation button interaction:', error);
       if (error.code == 50007){
         const newEmb = interaction.message.embeds[0]
+        const orderChannel = newEmb.fields[0].value
         await orderChannel.send({content:`<@${embed.field[1].value}> Your dms are closed. Kindly open the DMs and then ask someone from staff to send you the details`})
         const button = new ButtonBuilder()
         .setStyle('Primary')
