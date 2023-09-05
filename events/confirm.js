@@ -79,7 +79,7 @@ To get started type \`/help\` \n
       if (error.code == 50007){
         const newEmb = interaction.message.embeds[0]
         const orderChannel = newEmb.fields[0].value
-        await orderChannel.send({content:`<@${newEmb.field[1].value}> Your dms are closed. Kindly open the DMs and then ask someone from staff to send you the details`})
+        await orderChannel.send({content:`<@${newEmb.fields[1].value}> Your dms are closed. Kindly open the DMs and then ask someone from staff to send you the details`})
         const button = new ButtonBuilder()
         .setStyle('Primary')
         .setLabel('Dm details')
