@@ -12,7 +12,7 @@ module.exports = {
   async execute(interaction) {
     if (!interaction.isButton()) return;
     if (interaction.customId !== 'confirm_details') return;
-    
+    console.log('beast')
     await interaction.deferUpdate()
     const embed = interaction.message.embeds[0]
     const orderChannel = interaction.client.channels.cache.get(embed.fields[0].value)
@@ -46,7 +46,7 @@ To get started type \`/help\`
       > [Click here](https://discord.com/api/oauth2/authorize?client_id=${embed.fields[7].value}&permissions=8&scope=bot%20applications.commands) to invite the bot.
     > More details about the bot have been sent to you via **DM**s
 `)
-     await connection.execute('insert into bots_db values(?,?,?,?,?,?,?)',[embed.fields[1].value,embed.fields[2].value,embed.fields[3].value,embed.fields[4].value,embed.fields[5].value,embed.fields[6].value,embed.fields[7].value])
+     const [ row ] = await connection.execute('insert into bots_db values(?,?,?,?,?,?,?)',[embed.fields[1].value,embed.fields[2].value,embed.fields[3].value,embed.fields[4].value,embed.fields[5].value,embed.fields[6].value,embed.fields[7].value])
 } catch (error) {
       console.error('Error handling confirm bot creation button interaction:', error);
       if (error.code == 50007){
