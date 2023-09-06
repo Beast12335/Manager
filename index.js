@@ -52,12 +52,14 @@ require('events').EventEmitter.defaultMaxListeners = 25; // Adjust the value as 
 async function deleteExpiredBots() {
   const currentTime = new Date();
   const formattedTime = currentTime.toISOString();
-
+  console.log(formattedTime)
   const connection = await mysql.createConnection(process.env.DB_URL);
 
   try {
     const [ rows ] = await connection.execute('select *  FROM bots_db WHERE duration <= ?', [formattedTime]);
+    console.log(rows)
     for (let i=0;i<rows.length;i++){
+      console.log(rows[i].duration == formattedTime)
       const user = await client.users.cache.get(rows[i].customer)
       await user.send('beast')
       }
