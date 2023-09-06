@@ -51,7 +51,7 @@ require('events').EventEmitter.defaultMaxListeners = 25; // Adjust the value as 
 
 async function deleteExpiredBots() {
   const currentTime = new Date();
-  const formattedTime = currentTime.toISOString();
+  const formattedTime = currentTime.toString();
   console.log(formattedTime)
   const connection = await mysql.createConnection(process.env.DB_URL);
 
