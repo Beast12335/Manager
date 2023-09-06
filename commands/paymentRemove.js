@@ -4,7 +4,7 @@ const mysql = require('mysql2/promise');
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName('payment-remoce')
+    .setName('payment-remove')
     .setDescription('Deletes all payment records for a bot(admins only)')
     .addUserOption(option =>
     option.setName('bot')
