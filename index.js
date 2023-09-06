@@ -70,6 +70,7 @@ async function deleteExpiredBots() {
 }
 
 cron.schedule('*/5 * * * *', async () => {
+  console.log('chalo')
   deleteExpiredBots()
   });
 
