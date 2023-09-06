@@ -47,6 +47,23 @@ client.once('ready', async () => {
 // Increase the maximum listener limit for EventEmitter
 require('events').EventEmitter.defaultMaxListeners = 25; // Adjust the value as needed
 
+async function deleteExpiredBots() {
+  const currentTime = new Date();
+  const formattedTime = currentTime.toISOString();
+
+  const connection = await mysql.createConnection(process.env.DB_URL);
+
+  try {
+    await connection.execute('select *  FROM bots_db WHERE duration <= ?', [formattedTime]);
+    console.log('Deleted expired rows.');
+  } catch (error) {
+    console.error('Error deleting rows:', error);
+  } finally {
+    await connection.end();
+  }
+}
+
+
 // Event handler for interactions
 client.on('interactionCreate', async (interaction) => {
   if (interaction.isChatInputCommand()) {
