@@ -67,7 +67,7 @@ To get started type \`/help\` \n
  > Name : \`${embed.fields[6].value}\` \n
  > Original Owner: \`${customer.username}\``)
      // .setImage(qrCode)
-      await orderChannel.send({content:`<@${embed.fields[1].value}> Created By: ${creator} | ${embed.fields[2].value}`,embeds:[orderEmbed]})
+      await orderChannel.send({content:`<@${embed.fields[1].value}> | Created By: ${creator} (${embed.fields[2].value})`,embeds:[orderEmbed]})
       const newEmbed = EmbedBuilder.from(embed).addFields({name:`**Security Code:**`,value:randomCode,inline:true});
       await interaction.editReply({embeds:[newEmbed]});
       const msg = await customer.send({content:message,embeds:[dmEmbed],files:[file]})
