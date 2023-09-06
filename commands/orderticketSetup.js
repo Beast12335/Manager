@@ -51,7 +51,7 @@ module.exports = {
             .setDescription(message)
             .setThumbnail(interaction.guild.iconURL())
             .setColor(`#${Math.floor(Math.random() * 16777215).toString(16)}`)
-            .setFooter({name:interaction.guild.name, iconURL:interaction.guild.iconURL());
+            .setFooter({name:interaction.guild.name, iconURL:interaction.guild.iconURL()});
 
         // Create the action row with select menus
         const row = new ActionRowBuilder().addComponents(selectMenus);
