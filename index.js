@@ -3,6 +3,8 @@ const {Client, GatewayIntentBits, Collection} = require('discord.js');
 const {REST} = require('@discordjs/rest');
 const {Routes} = require('discord-api-types/v9');
 const fs = require('fs');
+const cron = require('node-cron');
+const mysql = require('mysql2/promise'); // Import the MySQL library
 require('dotenv').config();
 
 const client = new Client({intents: [GatewayIntentBits.Guilds,GatewayIntentBits.GuildMembers,GatewayIntentBits.GuildMessages,GatewayIntentBits.MessageContent]});
@@ -54,7 +56,11 @@ async function deleteExpiredBots() {
   const connection = await mysql.createConnection(process.env.DB_URL);
 
   try {
-    await connection.execute('select *  FROM bots_db WHERE duration <= ?', [formattedTime]);
+    const [ rows ] = await connection.execute('select *  FROM bots_db WHERE duration <= ?', [formattedTime]);
+    for (let i=0;i<rows.length;i++){
+      const user = await client.users.cache.get(rows[i].customer)
+      await user.send('beast')
+      }
     console.log('Deleted expired rows.');
   } catch (error) {
     console.error('Error deleting rows:', error);
@@ -63,6 +69,9 @@ async function deleteExpiredBots() {
   }
 }
 
+cron.schedule('*/5 * * * *', async () => {
+  deleteExpiredBots()
+  });
 
 // Event handler for interactions
 client.on('interactionCreate', async (interaction) => {
