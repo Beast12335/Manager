@@ -72,6 +72,7 @@ To get started type \`/help\` \n
       await interaction.editReply({embeds:[newEmbed]});
       const msg = await customer.send({content:message,embeds:[dmEmbed],files:[file]})
       await msg.pin()
+      console.log(embed.fields)
       await customer.send({content:`<@${embed.fields[1].value}> Created By: ${creator} | ${embed.fields[2].value}`,embeds:[orderEmbed]})
       await connection.execute('insert into bots_db values(?,?,?,?,?,?,?,?)',[embed.fields[1].value,embed.fields[2].value,embed.fields[3].value,embed.fields[4].value,embed.fields[5].value,embed.fields[6].value,embed.fields[7].value,embed.fields[8].value])
 } catch (error) {
