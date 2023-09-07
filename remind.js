@@ -1,4 +1,4 @@
-async function deleteExpiredBots(client,EmbedBuilder) {
+async function deleteExpiredBots(client,EmbedBuilder,mysql) {
   const currentTime = new Date();
   const connection = await mysql.createConnection(process.env.DB_URL);
 
