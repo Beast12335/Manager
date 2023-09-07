@@ -19,7 +19,7 @@ module.exports = {
               await interaction.followUp('You can\'t use this command.')
               }
             const connection = await mysql.createConnection(process.env.DB_URL);
-            const [rows] = await connection.execute('SELECT * FROM bots_db WHERE customer = ?', [user.id]);
+            const [rows] = await connection.execute('SELECT * FROM bots_db WHERE name = ?', [bot]);
 
             if (rows.length === 0) {
                 await interaction.followUp('No information found for the specified user.');
