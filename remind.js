@@ -19,7 +19,7 @@ async function deleteExpiredBots(client,EmbedBuilder,mysql) {
         const message = `**You need to pay for your Bot again!**__The ${rows[i].pay_type} PAYMENT-Bot:__> <@${rows[i].id}> | ${rows[i].name} (\`${rows[i].id}\`)> **Please go to <#1073917050541572146> and open a Ticket, otherwise your Bot will go offline soon!**`
         
         await channel.send({content:`<@849123406477656086> The ${rows[i].pay_type} payment for ${rows[i].name} have ended.`})
-        await connection.execute('update bots_db set remind = ? where id = ${rows[i].id}',['false'])
+        await connection.execute('update bots_db set remind = ? where id = ?',['false',rows[i].id])
         try{
           await user.send({content:message,embeds:[embed]})
         }catch(e){
