@@ -1,6 +1,6 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { EmbedBuilder } = require('discord.js');
-const translate = require('@vitalets/google-translate-api');
+const  { translate } = require('@vitalets/google-translate-api');
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -15,7 +15,7 @@ module.exports = {
     const textToTranslate = interaction.options.getString('text');
 
     try {
-      const translation = await translate(textToTranslate, { to: 'en' });
+      const { translation } = await translate(textToTranslate, { to: 'en' });
 
       const embed = new EmbedBuilder()
         .setTitle('Translation')
