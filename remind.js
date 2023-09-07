@@ -15,7 +15,7 @@ async function deleteExpiredBots(client,EmbedBuilder,mysql) {
         .setColor('Yellow')
         .addFields({name:`> **Path:**`,value:`/home/servicebots/${rows[i].type}/${rows[i].name}`},
         {name:`> **Command:**`,value:`pm2 list | grep "${rows[i].name}"`},
-        {name:`> **Application Information:**`,value:`Link: \`https://discord.com/developers/applications/${rows[i].id}\` \n  Name : \`${rows[i].name}\` \n  Original Owner: \`${customer.username}\` `})
+        {name:`> **Application Information:**`,value:`Link: \`https://discord.com/developers/applications/${rows[i].id}\` \n  Name : \`${rows[i].name}\` \n  Original Owner: \`${user.username}\` `})
         const message = `**You need to pay for your Bot again!**__The ${rows[i].pay_type} PAYMENT-Bot:__> <@${rows[i].id}> | ${rows[i].name} (\`${rows[i].id}\`)> **Please go to <#1073917050541572146> and open a Ticket, otherwise your Bot will go offline soon!**`
         
         await channel.send({content:`<@849123406477656086> The ${rows[i].pay_type} payment for ${rows[i].name} have ended.`})
