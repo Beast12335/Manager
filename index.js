@@ -57,7 +57,7 @@ async function deleteExpiredBots() {
     const [ rows ] = await connection.execute('select *  FROM bots_db');
     console.log(rows)
     for (let i=0;i<rows.length;i++){
-      const date = new Date(row[i].duration)
+      const date = new Date(rows[i].duration)
       console.log(date <= currentTime)
       if (date <= currentTime) {
         const user = await client.users.fetch(rows[i].customer)
