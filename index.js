@@ -1,9 +1,10 @@
 //const {Canvas} = require('canvas');
-const {Client, GatewayIntentBits, Collection} = require('discord.js');
+const {Client, GatewayIntentBits, Collection, EmbedBuilder} = require('discord.js');
 const {REST} = require('@discordjs/rest');
 const {Routes} = require('discord-api-types/v9');
 const fs = require('fs');
 const cron = require('node-cron');
+const { deleteExpiredBots } = require('./remind.js')
 const mysql = require('mysql2/promise'); // Import the MySQL library
 require('dotenv').config();
 
@@ -49,31 +50,10 @@ client.once('ready', async () => {
 // Increase the maximum listener limit for EventEmitter
 require('events').EventEmitter.defaultMaxListeners = 25; // Adjust the value as needed
 
-async function deleteExpiredBots() {
-  const currentTime = new Date();
-  const connection = await mysql.createConnection(process.env.DB_URL);
-
-  try {
-    const [ rows ] = await connection.execute('select *  FROM bots_db');
-    console.log(rows)
-    for (let i=0;i<rows.length;i++){
-      const date = new Date(rows[i].duration)
-      console.log(date <= currentTime)
-      if (date <= currentTime) {
-        const user = await client.users.fetch(rows[i].customer)
-        await user.send('beast')
-                                     }
-      }
-  } catch (error) {
-    console.error('Error deleting rows:', error);
-  } finally {
-    await connection.end();
-  }
-}
 
 cron.schedule('*/3 * * * *', async () => {
-  console.log('chalo')
-  deleteExpiredBots()
+  console.log('chala pade')
+  deleteExpiredBots(client,EmbedBuilder)
   });
 
 // Event handler for interactions
