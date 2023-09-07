@@ -51,20 +51,19 @@ require('events').EventEmitter.defaultMaxListeners = 25; // Adjust the value as 
 
 async function deleteExpiredBots() {
   const currentTime = new Date();
-  const formattedTime = currentTime.toString();
-  console.log(formattedTime)
   const connection = await mysql.createConnection(process.env.DB_URL);
 
   try {
-    const [ rows ] = await connection.execute('select *  FROM bots_db WHERE duration <= ?', [formattedTime]);
+    const [ rows ] = await connection.execute('select *  FROM bots_db');
     console.log(rows)
     for (let i=0;i<rows.length;i++){
-      console.log(rows[i].duration <= formattedTime)
-      console.log(row[i].customer) 
-      const user = await client.users.fetch(rows[i].customer)
-      await user.send('beast')
+      const date = new Date(row[i].duration)
+      console.log(date <= currentTime)
+      if (date <= currentTime) {
+        const user = await client.users.fetch(rows[i].customer)
+        await user.send('beast')
+                                     }
       }
-    console.log('Deleted expired rows.');
   } catch (error) {
     console.error('Error deleting rows:', error);
   } finally {
@@ -72,7 +71,7 @@ async function deleteExpiredBots() {
   }
 }
 
-cron.schedule('*/5 * * * *', async () => {
+cron.schedule('*/3 * * * *', async () => {
   console.log('chalo')
   deleteExpiredBots()
   });
