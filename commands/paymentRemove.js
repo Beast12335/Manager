@@ -30,7 +30,7 @@ module.exports = {
       const embed = new EmbedBuilder()
           .setTitle('Payment Removed')
           .setColor(`#${Math.floor(Math.random() * 16777215).toString(16)}`)
-          .setDescription(`All payment records for <@${bot}> have been removed.`);
+          .setDescription(`All payment records for ${bot} have been removed.`);
 
         await interaction.followUp({ embeds: [embed] });
     } catch (error) {
