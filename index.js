@@ -54,6 +54,7 @@ require('events').EventEmitter.defaultMaxListeners = 25; // Adjust the value as 
 cron.schedule('*/3 * * * *', async () => {
   console.log('chala pade')
   help.deleteExpiredBots(client,EmbedBuilder,mysql)
+  console.log('beast')
   help.paymentRemind(client,EmbedBuilder,mysql)
   });
 
