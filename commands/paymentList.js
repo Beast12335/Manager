@@ -27,7 +27,7 @@ module.exports = {
         return interaction.followUp('Not a valid bot.');
       }
       await connection.execute('select * from payments where bot = ? order by duration desc',[bot.id])
-      const fields = ''
+      let fields = ''
       for (let i=0;i<rows.length;i++){
         fields+= i+1 +` | ${rows[i].type} | ${rows[i].duration}`
         }
