@@ -26,16 +26,15 @@ module.exports = {
       if (rows.length === 0) {
         return interaction.followUp('Not a valid bot.');
       }
-      await connection.execute('select * from payments where bot = ? order by duration desc',[bot.id])
-      let fields = ''
-      for (let i=0;i<rows.length;i++){
-        fields+= i+1 +` | ${rows[i].type} | ${rows[i].duration}`
-        }
+      const [ rec ] = await connection.execute('select * from payments where bot = ? order by duration desc',[bot.id])
+      
       const embed = new EmbedBuilder()
           .setTitle('Payment List')
           .setColor(`#${Math.floor(Math.random() * 16777215).toString(16)}`)
-          .setDescription(`${fields}`);
 
+      rec.forEach((row, index) => {
+                embed.addFields({name:` `, value: `${index+1}. | ${rows[0].name} | ${row.type} | ${row.duration}`});
+            });
         await interaction.followUp({ embeds: [embed] });
     } catch (error) {
       console.error(error);
