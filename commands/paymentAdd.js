@@ -69,7 +69,7 @@ module.exports = {
         const embed = new EmbedBuilder()
           .setTitle('Payment Added')
           .setColor(`#${Math.floor(Math.random() * 16777215).toString(16)}`)
-          .setDescription(`${type} Payment for <@${bot}> have been added`);
+          .setDescription(`${type} Payment for ${bot} have been added`);
 
         await interaction.followUp({ embeds: [embed] }); }
       else{
