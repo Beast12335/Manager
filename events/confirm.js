@@ -74,7 +74,7 @@ To get started type \`/help\` \n
       await msg.pin()
       console.log(embed.fields)
       await customer.send({content:`<@${embed.fields[1].value}> Created By: ${creator} | ${embed.fields[2].value}`,embeds:[orderEmbed]})
-      await connection.execute('insert into bots_db values(?,?,?,?,?,?,?,?,?)',[embed.fields[1].value,embed.fields[2].value,embed.fields[3].value,embed.fields[4].value,embed.fields[5].value,embed.fields[6].value,embed.fields[7].value,embed.fields[8].value,'true'])
+      await connection.execute('insert into bots_db values(?,?,?,?,?,?,?,?,?)',[embed.fields[1].value,embed.fields[2].value,embed.fields[3].value,embed.fields[4].value,embed.fields[5].value,embed.fields[6].value,embed.fields[7].value,randomCode,'true'])
 } catch (error) {
       console.error('Error handling confirm bot creation button interaction:', error);
       if (error.code == 50007){
