@@ -19,14 +19,14 @@ module.exports = {
 
     try {
       const connection = await mysql.createConnection(process.env.DB_URL);
-      const bot = interaction.options.getUserOptipn('bot').id
+      const bot = interaction.options.getUserOptipn('bot')
       
-      const [rows] = await connection.execute('SELECT * FROM bots_db where id = ?',[bot]);
+      const [rows] = await connection.execute('SELECT * FROM bots_db where id = ?',[bot.id]);
 
       if (rows.length === 0) {
         return interaction.followUp('Not a valid bot.');
       }
-      await connection.execute('delete from payments where bot = ?',[bot])
+      await connection.execute('delete from payments where bot = ?',[bot.id])
       const embed = new EmbedBuilder()
           .setTitle('Payment Removed')
           .setColor(`#${Math.floor(Math.random() * 16777215).toString(16)}`)
