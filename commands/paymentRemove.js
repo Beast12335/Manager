@@ -19,7 +19,7 @@ module.exports = {
 
     try {
       const connection = await mysql.createConnection(process.env.DB_URL);
-      const bot = interaction.options.getUserOptipn('bot')
+      const bot = interaction.options.getUser('bot')
       
       const [rows] = await connection.execute('SELECT * FROM bots_db where id = ?',[bot.id]);
 
