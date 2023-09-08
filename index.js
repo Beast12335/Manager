@@ -4,7 +4,7 @@ const {REST} = require('@discordjs/rest');
 const {Routes} = require('discord-api-types/v9');
 const fs = require('fs');
 const cron = require('node-cron');
-const { deleteExpiredBots,remindPayment } = require('./remind.js')
+const { deleteExpiredBots,paymentRemind } = require('./remind.js')
 const mysql = require('mysql2/promise'); // Import the MySQL library
 require('dotenv').config();
 
@@ -53,9 +53,9 @@ require('events').EventEmitter.defaultMaxListeners = 25; // Adjust the value as 
 
 cron.schedule('*/3 * * * *', async () => {
   console.log('chala pade')
-  deleteExpiredBots(client,EmbedBuilder,mysql)
+  await deleteExpiredBots(client,EmbedBuilder,mysql)
   console.log('beast')
-  paymentRemind(client,EmbedBuilder,mysql)
+  await paymentRemind(client,EmbedBuilder,mysql)
   });
 
 // Event handler for interactions
