@@ -52,8 +52,6 @@ async function deleteExpiredBots(client, EmbedBuilder, mysql) {
   }
 }
 
-module.exports = {deleteExpiredBots};
-
 async function paymentRemind(client, EmbedBuilder, mysql) {
   const currentTime = new Date();
   const connection = await mysql.createConnection(process.env.DB_URL);
@@ -109,4 +107,4 @@ async function paymentRemind(client, EmbedBuilder, mysql) {
   }
 }
 
-module.exports = {paymentRemind};
+module.exports = { paymentRemind,deleteExpiredBots };
