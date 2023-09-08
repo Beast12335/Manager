@@ -22,7 +22,7 @@ module.exports = {
     try {
       
       await interaction.followUp({ content: 'Starting the bot creating process. Let\'s continue in DMs.', ephemeral: true });
-      const ch = interaction.client.channels.cache.get('1047679692632768512')
+      const ch = interaction.client.channels.cache.get('1149237916099412029')
       const customerRow = new ActionRowBuilder()
       .addComponents(
         new ButtonBuilder()
