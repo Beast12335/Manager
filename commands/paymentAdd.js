@@ -34,10 +34,10 @@ module.exports = {
 
     try {
       const connection = await mysql.createConnection(process.env.DB_URL);
-      const bot = interaction.options.getUserOptipn('bot')
-      const customer = interaction.options.getUserOption('customer')
-      const type = interaction.options.getStringOption('payment_type')
-      const input = interaction.options.getStringOption('duration').trim().toLowerCase();
+      const bot = interaction.options.getUser('bot')
+      const customer = interaction.options.getUser('customer')
+      const type = interaction.options.getString('payment_type')
+      const input = interaction.options.getString('duration').trim().toLowerCase();
       const duration = parseInt(input);
       let expired;
       
