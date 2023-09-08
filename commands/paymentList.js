@@ -33,7 +33,7 @@ module.exports = {
           .setColor(`#${Math.floor(Math.random() * 16777215).toString(16)}`)
 
       rec.forEach((row, index) => {
-                embed.addFields({name:` `, value: `${index+1}. | ${rows[0].name} | ${row.type} | ${row.duration}`});
+                embed.addFields({name:` `, value: `${index+1}.  ${rows[0].name} | ${row.type} payment | ${row.duration}`});
             });
         await interaction.followUp({ embeds: [embed] });
     } catch (error) {
