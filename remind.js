@@ -27,7 +27,7 @@ async function deleteExpiredBots(client, EmbedBuilder, mysql) {
                 value: ` Link: \`https://discord.com/developers/applications/${rows[i].id}\` \n  Name : \`${rows[i].name}\` \n  Original Owner: \`${user.username}\` `,
               }
             );
-          const message = `**You need to pay for your Bot again!**__The ${rows[i].pay_type} PAYMENT-Bot:__ \n > <@${rows[i].id}> | ${rows[i].name} (\`${rows[i].id}\`)> \n **Please go to <#1073917050541572146> and open a Ticket, otherwise your Bot will go offline soon!**`;
+          const message = `**You need to pay for your Bot again!**__ \n The ${rows[i].pay_type} PAYMENT-Bot:__ \n > <@${rows[i].id}> | ${rows[i].name} (\`${rows[i].id}\`)> \n\n **Please go to <#1073917050541572146> and open a Ticket, otherwise your Bot will go offline soon!**`;
 
           await channel.send({
             content: `<@849123406477656086> The ${rows[i].pay_type} payment for ${rows[i].name} have ended.`,
@@ -82,7 +82,7 @@ async function paymentRemind(client, EmbedBuilder, mysql) {
                 value: ` Link: \`https://discord.com/developers/applications/${record[0].id}\` \n  Name : \`${record[0].name}\` \n  Original Owner: \`${user.username}\` `,
               }
             );
-          const message = `**You need to pay for your Bot again!**__The ${rows[i].type} PAYMENT-Bot:__ \n > <@${rows[i].bot}> | ${record[0].name} (\`${rows[i].bot}\`)> \n **Please go to <#1073917050541572146> and open a Ticket, otherwise your Bot will go offline soon!**`;
+          const message = `**You need to pay for your Bot again!**__ \n The ${rows[i].type} PAYMENT-Bot:__ \n > <@${rows[i].bot}> | ${record[0].name} (\`${rows[i].bot}\`)> \n\n **Please go to <#1073917050541572146> and open a Ticket, otherwise your Bot will go offline soon!**`;
 
           await channel.send({
             content: `<@849123406477656086> The ${rows[i].type} payment for ${record[0].name} have ended.`,
