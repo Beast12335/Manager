@@ -65,7 +65,7 @@ module.exports = {
         return interaction.followUp('Not a valid bot.');
       }
       if (expired){
-        await connection.execute('insert into payments values (?,?,?,?,?)',[bot,customer, interaction.user.id,type,expired])
+        await connection.execute('insert into payments values (?,?,?,?,?,?)',[bot,customer, interaction.user.id,type,expired,'true'])
         const embed = new EmbedBuilder()
           .setTitle('Payment Added')
           .setColor(`#${Math.floor(Math.random() * 16777215).toString(16)}`)
