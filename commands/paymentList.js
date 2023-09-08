@@ -19,14 +19,14 @@ module.exports = {
 
     try {
       const connection = await mysql.createConnection(process.env.DB_URL);
-      const bot = interaction.options.getUserOptipn('bot').id
+      const bot = interaction.options.getUserOptipn('bot')
       
-      const [rows] = await connection.execute('SELECT * FROM bots_db where id = ?',[bot]);
+      const [rows] = await connection.execute('SELECT * FROM bots_db where id = ?',[bot.id]);
 
       if (rows.length === 0) {
         return interaction.followUp('Not a valid bot.');
       }
-      await connection.execute('select * from payments where bot = ? order by duration desc',[bot])
+      await connection.execute('select * from payments where bot = ? order by duration desc',[bot.id])
       const fields = ''
       for (let i=0;i<row.length;i++){
         fields+= i+1 +` | ${row[i].type} | ${row[i].duration}`
