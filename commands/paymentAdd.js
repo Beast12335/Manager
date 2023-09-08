@@ -34,8 +34,8 @@ module.exports = {
 
     try {
       const connection = await mysql.createConnection(process.env.DB_URL);
-      const bot = interaction.options.getUserOptipn('bot').id
-      const customer = interaction.options.getUserOption('customer').id
+      const bot = interaction.options.getUserOptipn('bot')
+      const customer = interaction.options.getUserOption('customer')
       const type = interaction.options.getStringOption('payment_type')
       const input = interaction.options.getStringOption('duration').trim().toLowerCase();
       const duration = parseInt(input);
@@ -59,13 +59,13 @@ module.exports = {
         }
       }
       
-      const [rows] = await connection.execute('SELECT * FROM bots_db where id = ?',[bot]);
+      const [rows] = await connection.execute('SELECT * FROM bots_db where id = ?',[bot.id]);
 
       if (rows.length === 0) {
         return interaction.followUp('Not a valid bot.');
       }
       if (expired){
-        await connection.execute('insert into payments values (?,?,?,?,?,?)',[bot,customer, interaction.user.id,type,expired,'true'])
+        await connection.execute('insert into payments values (?,?,?,?,?,?)',[bot.id,customer.id, interaction.user.id,type,expired,'true'])
         const embed = new EmbedBuilder()
           .setTitle('Payment Added')
           .setColor(`#${Math.floor(Math.random() * 16777215).toString(16)}`)
