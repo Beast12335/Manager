@@ -28,8 +28,8 @@ module.exports = {
       }
       await connection.execute('select * from payments where bot = ? order by duration desc',[bot.id])
       const fields = ''
-      for (let i=0;i<row.length;i++){
-        fields+= i+1 +` | ${row[i].type} | ${row[i].duration}`
+      for (let i=0;i<rows.length;i++){
+        fields+= i+1 +` | ${row[si].type} | ${rows[i].duration}`
         }
       const embed = new EmbedBuilder()
           .setTitle('Payment List')
