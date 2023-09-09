@@ -66,8 +66,8 @@ module.exports = {
       const row = new ActionRowBuilder().addComponents(selectMenu);
       await interaction.channel.send({embeds: [embed], components: [row]});
       await interaction.followUp('Order ticket setup');
-    } catch (e) {
-      console.log('Error using /order: ' + e);
+    } catch (error) {
+      console.error('Error using /order: ' + error);
       await interaction.followUp('An error occurred');
     }
   },
