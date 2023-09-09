@@ -22,7 +22,7 @@ module.exports = {
       const channelDescription = `${chosenValue} (Created at: ${new Date().toLocaleString()})`;
       const connection = await mysql.createConnection(process.env.DB_URL);
 
-      const newChannel = await guild.channels.create(channelName, {
+      const newChannel = await guild.channels.create(name:channelName, {
         type: 0,
         topic: channelDescription,
         permissionOverwrites: [
