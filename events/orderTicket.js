@@ -28,15 +28,15 @@ module.exports = {
         permissionOverwrites: [
           {
             id: user.id,
-            allow: ['PermissionsBitField.ViewChannel'],
+            allow: [PermissionsBitField.ViewChannel],
           },
           {
             id: '1105054387488952340', // Role ID 39393939
-            allow: ['PermissionsBitField.ViewChannel'],
+            allow: [PermissionsBitField.ViewChannel],
           },
           {
             id: guild.id,
-            deny: ['PermissionsBitField.ViewChannel'],
+            deny: [PermissionsBitField.ViewChannel],
           },
         ],
       });
