@@ -55,7 +55,7 @@ module.exports = {
       const embed = new EmbedBuilder()
         .setTitle('Order Ticket')
         .setDescription(description)
-        .setThumbnail(interaction.guild.iconURL) // Replace with your image URL
+        .setThumbnail(interaction.guild.iconURL()) // Replace with your image URL
         .setColor(`#${Math.floor(Math.random() * 16777215).toString(16)}`)
         .setFooter({
           text: interaction.guild.name,
@@ -67,7 +67,7 @@ module.exports = {
       await interaction.channel.send({embeds: [embed], components: [row]});
       await interaction.followUp('Order ticket setup');
     } catch (error) {
-      console.error('Error using /order: ' + error);
+      console.error(error);
       await interaction.followUp('An error occurred');
     }
   },
