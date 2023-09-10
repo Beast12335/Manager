@@ -67,6 +67,13 @@ client.on('interactionCreate', async (interaction) => {
     if (!command) return;
     await command.execute(interaction);
   }
+  if (interaction.isMessageContextMenuCommand()) {
+    const commandName = interaction.commandName;
+    const command = client.commands.get(commandName);
+  
+    if (!command) return;
+    await command.execute(interaction);
+  }
 });
 
 // Event handlers for other events in the 'events' folder
