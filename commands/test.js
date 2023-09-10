@@ -12,6 +12,7 @@ module.exports = {
       .addFields({name:'Ping', value:`${interaction.client.ws.ping}ms`})
       .setFooter({text:interaction.guild.name, iconURL:interaction.guild.iconURL()});
     console.log(interaction)
+    console.log(interaction.targetMessage)
     await interaction.followUp({ embeds: [embed] });
   },
 }
