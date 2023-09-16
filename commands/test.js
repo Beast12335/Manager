@@ -2,7 +2,7 @@ const { EmbedBuilder,ContextMenuCommandBuilder, ApplicationCommandType } = requi
 
 module.exports = {
   data: new ContextMenuCommandBuilder()
-    .setName('toggle')
+    .setName('dw')
     .setType(ApplicationCommandType.Message),
   async execute(interaction) {
     await interaction.deferReply({ephemeral:true})
@@ -13,13 +13,13 @@ module.exports = {
     const message = interaction.targetMessage
     if (message.components && message.components.length > 0) {
       // Find the index of the option with the same name as the command
-      const optionIndex = message.components[0].components.findIndex(
-        (component) => component.customId === interaction.commandName
+      const optionIndex = message.components[0].components[0].options.findIndex(
+        (component) => component.name === interaction.commandName
       );
     
       // If the option exists, remove it
       if (optionIndex !== -1) {
-        message.components[0].components.splice(optionIndex, 1);
+        message.components[0].components[0].options.splice(optionIndex, 1);
     
         // Edit the message to update the select menu
         await message.edit({components: [message.components[0]]});
