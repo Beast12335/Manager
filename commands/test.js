@@ -9,12 +9,12 @@ module.exports = {
     if (!interaction.member.permissions.has('ADMINISTRATOR')) {
       return interaction.followUp('You do not have permission to use this command.');
     }
-    console.log(interaction.targetMessage.components[0].components)
+    console.log(interaction.targetMessage.components[0].components[0].options)
     const message = interaction.targetMessage
     if (message.components && message.components.length > 0) {
       // Find the index of the option with the same name as the command
       const optionIndex = message.components[0].components[0].options.findIndex(
-        (component) => component.name === interaction.commandName
+        (component) => component.value == interaction.commandName
       );
     
       // If the option exists, remove it
