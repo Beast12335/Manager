@@ -2,7 +2,7 @@ module.exports = {
   name: 'interactionCreate',
   async execute(interaction) {
     if (!interaction.isButton()) return;
-    if (interaction.customId !== 'view_users') return;
+    if (interaction.customId !== 'users') return;
 
     try {
       // Check if the user has the role with ID 38292739
