@@ -60,13 +60,13 @@ module.exports = {
      .setStyle('Secondary')
      .setLabel('Prices')
      .setcustomId('prices')
-     .setEmoji('💰')
+     .setEmoji('925674626179293214')
      
      const payment = new ButtonBuilder()
      .setStyle('Secondary')
      .setLabel('Payment Types')
      .setcustomId('payment')
-     .setEmoji('🏦')
+     .setEmoji('1100358122792566834')
       // Create the embed
       const embed = new EmbedBuilder()
         .setTitle('Order Ticket')
