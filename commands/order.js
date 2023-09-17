@@ -20,7 +20,11 @@ module.exports = {
         .setName('menuoptions')
         .setDescription('Enter select menu options separated by commas')
         .setRequired(true)
-    ),
+    )
+   .addStringOption((option)=>
+     option.setName('emojis')
+                    .setDescription('Emojis for all options')
+                    .setRequired(true)),
   async execute(interaction) {
     await interaction.deferReply();
     try {
