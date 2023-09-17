@@ -59,13 +59,13 @@ module.exports = {
      const prices = new ButtonBuilder()
      .setStyle('Secondary')
      .setLabel('Prices')
-     .setcustomId('prices')
+     .setCustomId('prices')
      .setEmoji('925674626179293214')
      
      const payment = new ButtonBuilder()
      .setStyle('Secondary')
      .setLabel('Payment Types')
-     .setcustomId('payment')
+     .setCustomId('payment')
      .setEmoji('1100358122792566834')
       // Create the embed
       const embed = new EmbedBuilder()
