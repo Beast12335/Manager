@@ -2,7 +2,7 @@ const {SlashCommandBuilder} = require('@discordjs/builders');
 const {
   EmbedBuilder,
   ActionRowBuilder,
-  StringSelectMenuBuilder,
+  StringSelectMenuBuilder, ButtonBuilder
 } = require('discord.js');
 
 module.exports = {
@@ -50,7 +50,17 @@ module.exports = {
         .setCustomId('order')
         .setPlaceholder('Choose the Bot Type')
         .addOptions(selectMenuOptions);
-
+     const prices = new ButtonBuilder()
+     .setStyle('Secondary')
+     .setLabel('Prices')
+     .setcustomId('prices')
+     .setEmoji('💰')
+     
+     const payment = new ButtonBuilder()
+     .setStyle('Secondary')
+     .setLabel('Payment Types')
+     .setcustomId('payment')
+     .setEmoji('🏦')
       // Create the embed
       const embed = new EmbedBuilder()
         .setTitle('Order Ticket')
@@ -64,7 +74,9 @@ module.exports = {
 
       // Send the embed with the select menu
       const row = new ActionRowBuilder().addComponents(selectMenu);
-      await interaction.channel.send({embeds: [embed], components: [row]});
+      const row1 = new ActionRowBuilder().addComponents(prices)
+      const row2 = new ActionRowBuilder().addComponents(payment);
+      await interaction.channel.send({embeds: [embed], components: [row1,row2,row]});
       await interaction.followUp('Order ticket setup');
     } catch (error) {
       console.error(error);
