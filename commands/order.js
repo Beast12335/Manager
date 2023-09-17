@@ -39,13 +39,15 @@ module.exports = {
       const menuOptions = interaction.options
         .getString('menuoptions')
         .split(',');
+      const emojis = interaction.options.getString('emojis').split(',')
 
       // Create select menu options
       const selectMenuOptions = [];
-      for (const option of menuOptions) {
+      for (let i=0;i<menuOptions.length;i++) {
         selectMenuOptions.push({
-          label: option.trim(),
-          value: option.trim(),
+          label: menuOptions[i].trim(),
+          value: menuOptions.trim(),
+          emoji: emojis[i],
         });
       }
 
