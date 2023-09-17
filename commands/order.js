@@ -46,7 +46,7 @@ module.exports = {
       for (let i=0;i<menuOptions.length;i++) {
         selectMenuOptions.push({
           label: menuOptions[i].trim(),
-          value: menuOptions.trim(),
+          value: menuOptions[i].trim(),
           emoji: emojis[i],
         });
       }
