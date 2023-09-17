@@ -62,16 +62,16 @@ module.exports = {
         fields: [
           {
             name: '> 1. What should be the **Bot Name**?',
-            value: ' ',
-            name:'> 2. What should be the **Bot Logo**?',
-            value:' ',
-            name:'> 3. What should be the **Activity Type**?',
-            value:' `(Playing/Watching/Streaming/,Competing)`',
-            name:'> 4. What should be the **Status**?',
-            value:' `(Ex. -help)`',
-            name:'> 5. What is the **Payment Method**',
-            value:' ',
-            name:'Use `/howtopay` on more details about payment methods',
+            value: ' '},
+         {name:'> 2. What should be the **Bot Logo**?',
+            value:' '},
+         {name:'> 3. What should be the **Activity Type**?',
+            value:' `(Playing/Watching/Streaming/,Competing)`'},
+         {name:'> 4. What should be the **Status**?',
+            value:' `(Ex. -help)`'},
+         {name:'> 5. What is the **Payment Method**',
+            value:' '},
+         {name:'Use `/howtopay` on more details about payment methods',
             value:' '
           },
         ],
@@ -80,7 +80,7 @@ module.exports = {
       const claim = new ButtonBuilder()
       .setStyle('Secondary')
       .setLabel('Claim')
-      .setCustomId('claim')
+      .setCustomId('claim_ticket')
       const users = new ButtonBuilder()
       .setStyle('Primary')
       .setLabel('Users')
@@ -92,15 +92,15 @@ module.exports = {
       const close = new ButtonBuilder()
       .setStyle('Danger')
       .setLabel('Close')
-      .setCustomId('close')
+      .setCustomId('close_ticket')
       const deleteButton = new ButtonBuilder()
       .setStyle('Danger')
       .setLabel('Delete')
-      .setCustomId('delete')
+      .setCustomId('delete_ticket')
       const transcript = new ButtonBuilder()
       .setStyle('Secondary')
       .setLabel('Transcript')
-      .setCustomId('transcript')
+      .setCustomId('get_transcript')
       
       const row = new ActionRowBuilder()
       .addComponents(claim,users,role,close)
@@ -109,7 +109,7 @@ module.exports = {
 
       const message = await newChannel.send({content:`<@${user.id}>, <@&1105054387488952340>`,embeds: [embed], components:[row,row2]});
       await message.pin();
-      await interaction.followUp(`Ticket created. <#newChannel.id>`)
+      await interaction.followUp(`Ticket created. <#${newChannel.id}>`)
       await connection.execute('insert into tickets values (?,?,?,?)',[user.id,newChannel.id,guild.id,'open'])
     } catch (e) {
       console.log('Error handling  order interaction:', e);
